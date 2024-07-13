@@ -1,4 +1,4 @@
-console.log("Hello Planet!")
+console.log("Hello Player 1, why are you checking the console?")
 
 // getComputerChoice needs to be a function that randomly, with equal odds, generates a string saying "rock" "paper" or "scissors"
 // We need to use math.random() to generate a random number between 0 and 1
