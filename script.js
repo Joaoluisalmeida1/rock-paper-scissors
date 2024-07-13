@@ -64,39 +64,87 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+// function playGame() {
+//     let humanScore = 0;
+//     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        const result = playRound(humanSelection, computerSelection);
+//     for (let i = 0; i < 5; i++) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         const result = playRound(humanSelection, computerSelection);
 
-        if (result === "human") {
-            humanScore++;
-            console.log(`Round ${i + 1}: You win!`);
-        } else if (result === "computer") {
-            computerScore++;
-            console.log(`Round ${i + 1}: I win!`);
-        } else if (result === "draw") {
-            console.log(`Round ${i + 1}: It's a draw!`);
-        } else {
-            console.log(`Round ${i + 1}: Invalid input. No points awarded.`);
+//         if (result === "human") {
+//             humanScore++;
+//             console.log(`Round ${i + 1}: You win!`);
+//         } else if (result === "computer") {
+//             computerScore++;
+//             console.log(`Round ${i + 1}: I win!`);
+//         } else if (result === "draw") {
+//             console.log(`Round ${i + 1}: It's a draw!`);
+//         } else {
+//             console.log(`Round ${i + 1}: Invalid input. No points awarded.`);
+//         }
+
+//         console.log("My score: " + computerScore);
+//         console.log("Your score: " + humanScore);
+//     }
+
+//     if (humanScore > computerScore) {
+//         console.log("Congratulations! You won the game!");
+//     } else if (computerScore > humanScore) {
+//         console.log("Computer wins the game! Better luck next time!");
+//     } else {
+//         console.log("The game is a draw! Well played!");
+//     }
+// }
+
+// playGame();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("button");
+    const container = document.getElementById("container");
+    const resultDiv = document.createElement("div");
+    resultDiv.textContent = `The current result is: Human - ${humanScore} vs Computer - ${computerScore}`;
+    container.appendChild(resultDiv);
+
+    const updatedScores = () => {
+        resultDiv.textContent = `The current result is: Human - ${humanScore} vs Computer - ${computerScore}`;
+    }
+
+    const checkWinner = () => {
+        if (humanScore >= 5 || computerScore >= 5) {
+            buttons.forEach(button => button.disabled = true);
+            const winner = humanScore >= 5 ? 'Human' : 'Computer';
+            alert(`${winner} wins the game! Final score is: Human - ${humanScore} vs Computer - ${computerScore}`);
         }
+    };
 
-        console.log("My score: " + computerScore);
-        console.log("Your score: " + humanScore);
-    }
 
-    if (humanScore > computerScore) {
-        console.log("Congratulations! You won the game!");
-    } else if (computerScore > humanScore) {
-        console.log("Computer wins the game! Better luck next time!");
-    } else {
-        console.log("The game is a draw! Well played!");
-    }
-}
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            if (humanScore < 5 && computerScore < 5) {
+                const humanChoice = button.id;
+                const computerChoice = getComputerChoice();
+                const result = playRound(humanChoice, computerChoice)
 
-playGame();
+                alert(`Human: ${humanChoice}, Computer: ${computerChoice}, Result: ${result} wins!`);
 
+                if (result === "human") {
+                    humanScore++;
+                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                } else if (result === "computer") {
+                    computerScore++;
+                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                } else if (result === "draw") {
+                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                } else {
+                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                }
+            }
+            
+            updatedScores();
+            checkWinner();
+            
+        });
+    });
+});
