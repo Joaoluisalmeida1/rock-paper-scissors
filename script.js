@@ -64,42 +64,6 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-// function playGame() {
-//     let humanScore = 0;
-//     let computerScore = 0;
-
-//     for (let i = 0; i < 5; i++) {
-//         const humanSelection = getHumanChoice();
-//         const computerSelection = getComputerChoice();
-//         const result = playRound(humanSelection, computerSelection);
-
-//         if (result === "human") {
-//             humanScore++;
-//             console.log(`Round ${i + 1}: You win!`);
-//         } else if (result === "computer") {
-//             computerScore++;
-//             console.log(`Round ${i + 1}: I win!`);
-//         } else if (result === "draw") {
-//             console.log(`Round ${i + 1}: It's a draw!`);
-//         } else {
-//             console.log(`Round ${i + 1}: Invalid input. No points awarded.`);
-//         }
-
-//         console.log("My score: " + computerScore);
-//         console.log("Your score: " + humanScore);
-//     }
-
-//     if (humanScore > computerScore) {
-//         console.log("Congratulations! You won the game!");
-//     } else if (computerScore > humanScore) {
-//         console.log("Computer wins the game! Better luck next time!");
-//     } else {
-//         console.log("The game is a draw! Well played!");
-//     }
-// }
-
-// playGame();
-
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("button");
     const container = document.getElementById("container");
