@@ -64,18 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("button");
     const container = document.getElementById("container");
     const resultDiv = document.createElement("div");
-    resultDiv.textContent = `The current result is: Player I - ${humanScore} vs This stupid game - ${computerScore}`;
+    resultDiv.textContent = `The current result is: Player I - ${humanScore} vs Computer - ${computerScore}`;
     finalresult.appendChild(resultDiv);
 
     const updatedScores = () => {
-        resultDiv.textContent = `The current result is: Player I - ${humanScore} vs This stupid game - ${computerScore}`;
+        resultDiv.textContent = `The current result is: Player I - ${humanScore} vs Computer - ${computerScore}`;
     }
 
     const checkWinner = () => {
         if (humanScore >= 5 || computerScore >= 5) {
             buttons.forEach(button => button.disabled = true);
-            const winner = humanScore >= 5 ? 'You' : 'This stupid game';
-            alert(`${winner} wins the game! Final score is: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
+            const winner = humanScore >= 5 ? 'Player I' : 'Computer';
+            alert(`${winner} wins the game! Final score is: \nPlayer I -> ${humanScore} \nvs \nComputer -> ${computerScore}\nReload the page to play again. But why would you?`);
         }
     };
 
@@ -87,7 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const computerChoice = getComputerChoice();
                 const result = playRound(humanChoice, computerChoice)
 
-                alert(`You: ${humanChoice}, This stupid game: ${computerChoice}, Result: ${result} wins!`);
+                if (result == 'draw') {
+                    alert(`You: ${humanChoice} \nComputer: ${computerChoice} \nResult: It's a Draw!`);
+                } else {
+                    alert(`You: ${humanChoice} \nComputer: ${computerChoice} \nResult: ${result} wins!`);
+                }
+                
 
                 if (result === "human") {
                     humanScore++;
