@@ -1,9 +1,9 @@
-console.log("Hello Player 1, why are you checking the console?")
+console.log("Hello Player I, why are you checking the console?")
 
-// getComputerChoice needs to be a function that randomly, with equal odds, generates a string saying "rock" "paper" or "scissors"
+// getComputerChoice needs to be a function that randomly, with equal odds, generates a string saying "rock" "tank" or "scissors"
 // We need to use math.random() to generate a random number between 0 and 1
 // We need to attribute to each play an interval, eg if the number falls between 0 and 0.333(3), it will be rock
-// if it falls between 0.33(4) and and 0.66(6) paper, else scissors.
+// if it falls between 0.33(4) and and 0.66(6) tank, else scissors.
 
 let humanScore = 0;
 let computerScore = 0;
@@ -16,7 +16,7 @@ function getComputerChoice() {
     if (randomNumber <= 0.333) {
         play = "rock";
     } else if (randomNumber <= 0.666) {
-        play = "paper"
+        play = "tank"
     } else {
         play = "scissors"
     }
@@ -28,33 +28,29 @@ function getComputerChoice() {
 // the function will return that prompt
 // set the prompt to lower case so users can write Rock, ROCK or RoCk
 
-function getHumanChoice() {
-    let choice = prompt("Rock, Paper, Scissors, Go!");
-    return choice.trim().toLowerCase();
-}
 
 // playRound is a function for each round played
 // it will have two parameters, human and computer choice
 // to set who wins a round:
-// if human choice is rock and computer choice is rock, draw; if human choice is rock and computer choice is paper, computer wins; if human is rock and pc is scissors, human wins;
-// repeat for human choice of paper and scissors
+// if human choice is rock and computer choice is rock, draw; if human choice is rock and computer choice is tank, computer wins; if human is rock and pc is scissors, human wins;
+// repeat for human choice of tank and scissors
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == "rock" && computerChoice == "rock") {
         return "draw";
-    } else if (humanChoice == "rock" && computerChoice == "paper") {
+    } else if (humanChoice == "rock" && computerChoice == "tank") {
         return "computer";
     } else if (humanChoice == "rock" && computerChoice == "scissors") {
         return "human";
-    } else if (humanChoice == "paper" && computerChoice == "scissors") {
-        return "computer";
-    } else if (humanChoice == "paper" && computerChoice == "rock") {
+    } else if (humanChoice == "tank" && computerChoice == "scissors") {
         return "human";
-    } else if (humanChoice == "paper" && computerChoice == "paper") {
+    } else if (humanChoice == "tank" && computerChoice == "rock") {
+        return "human";
+    } else if (humanChoice == "tank" && computerChoice == "tank") {
         return "draw";
     } else if (humanChoice == "scissors" && computerChoice == "scissors") {
         return "draw";
-    } else if (humanChoice == "scissors" && computerChoice == "paper") {
+    } else if (humanChoice == "scissors" && computerChoice == "tank") {
         return "human";
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
         return "computer";
@@ -68,18 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("button");
     const container = document.getElementById("container");
     const resultDiv = document.createElement("div");
-    resultDiv.textContent = `The current result is: Human - ${humanScore} vs Computer - ${computerScore}`;
-    container.appendChild(resultDiv);
+    resultDiv.textContent = `The current result is: Player I - ${humanScore} vs This stupid game - ${computerScore}`;
+    finalresult.appendChild(resultDiv);
 
     const updatedScores = () => {
-        resultDiv.textContent = `The current result is: Human - ${humanScore} vs Computer - ${computerScore}`;
+        resultDiv.textContent = `The current result is: Player I - ${humanScore} vs This stupid game - ${computerScore}`;
     }
 
     const checkWinner = () => {
         if (humanScore >= 5 || computerScore >= 5) {
             buttons.forEach(button => button.disabled = true);
-            const winner = humanScore >= 5 ? 'Human' : 'Computer';
-            alert(`${winner} wins the game! Final score is: Human - ${humanScore} vs Computer - ${computerScore}`);
+            const winner = humanScore >= 5 ? 'You' : 'This stupid game';
+            alert(`${winner} wins the game! Final score is: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
         }
     };
 
@@ -91,18 +87,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 const computerChoice = getComputerChoice();
                 const result = playRound(humanChoice, computerChoice)
 
-                alert(`Human: ${humanChoice}, Computer: ${computerChoice}, Result: ${result} wins!`);
+                alert(`You: ${humanChoice}, This stupid game: ${computerChoice}, Result: ${result} wins!`);
 
                 if (result === "human") {
                     humanScore++;
-                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                    console.log(`Result: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
                 } else if (result === "computer") {
                     computerScore++;
-                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                    console.log(`Result: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
                 } else if (result === "draw") {
-                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                    console.log(`Result: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
                 } else {
-                    console.log(`Result: Human - ${humanScore} vs Computer - ${computerScore}`);
+                    console.log(`Result: Player I - ${humanScore} vs This stupid game - ${computerScore}`);
                 }
             }
             
